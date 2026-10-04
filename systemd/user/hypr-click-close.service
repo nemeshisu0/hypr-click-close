@@ -1,0 +1,13 @@
+[Unit]
+Description=Zero-overhead click-to-close daemon for Hyprland launchers (rofi, wofi, fuzzel)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/hypr-click-close --daemon
+Restart=on-failure
+RestartSec=1
+
+[Install]
+WantedBy=graphical-session.target

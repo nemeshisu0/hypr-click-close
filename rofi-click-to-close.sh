@@ -12,9 +12,9 @@ pgrep -x rofi >/dev/null || exit 0
 
 get_cursor_xy() {
   if hyprctl cursorpos -j >/dev/null 2>&1; then
-    hyprctl cursorpos -j | jq -r '[.x,.y] | @tsv'
+    hyprctl cursorpos -j | jq -r '[(.x|floor), (.y|floor)] | @tsv'
   else
-    hyprctl cursorpos | tr -d ' ' | awk -F',' '{print $1 "\t" $2}'
+    hyprctl cursorpos | tr -d ' ' | awk -F',' '{print int($1) "\t" int($2)}'
   fi
 }
 
@@ -25,10 +25,10 @@ get_rofi_rects() {
     | select(.x? and .y? and (.w? or .width?) and (.h? or .height?) and .pid?)
     | [
         (.pid|tostring),
-        (.x|tostring),
-        (.y|tostring),
-        ((.w // .width)|tostring),
-        ((.h // .height)|tostring)
+        ((.x|floor)|tostring),
+        ((.y|floor)|tostring),
+        (((.w // .width)|floor)|tostring),
+        (((.h // .height)|floor)|tostring)
       ] | @tsv
   '
 }
