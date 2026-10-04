@@ -1,10 +1,10 @@
-# Maintainer: Your Name <your.email@example.com>
+# Maintainer: nemeshisu <christianpertot07@gmail.com>
 pkgname=hypr-click-close-git
 pkgver=1.0.0
 pkgrel=1
 pkgdesc="Zero-overhead event-driven click-to-close daemon for Hyprland launchers (rofi, wofi, fuzzel, tofi, walker)"
 arch=('any')
-url="https://github.com/your-username/hypr-click-close"
+url="https://github.com/nemeshisu0/hypr-click-close"
 license=('MIT')
 depends=('hyprland' 'python')
 provides=('hypr-click-close')
